@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+   frontend:
+     image: 'frontend:latest'
+     links:
+       - 'public-api:public-api'
+     environment:
+       - NEXT_PUBLIC_PUBLIC_API_URL=http://10.0.1.4:8080
+     ports:
+       - '80:3000'

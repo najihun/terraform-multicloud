@@ -1,0 +1,35 @@
+#cloud-config
+# Add groups to the system
+# Adds the ubuntu group with members 'root' and 'sys'
+# and the empty group hashicorp.
+package_upgrade: true
+package_update: true
+
+apt_sources:
+  - source: "ppa:longsleep/golang-backports"
+packages: golang-go
+
+groups:
+  - ubuntu: [root,sys]
+  - hashicorp
+
+# Add users to the system. Users are added after groups are added.
+users:
+  - default
+  - name: terraform
+    gecos: terraform
+    shell: /bin/bash
+    primary_group: hashicorp
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    lock_passwd: false
+    ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPcwwsC6zBsFPmTLvkcRqvmnZJ+famw/GfW7ST5rVuGDJbrxEDF7Jlzi7UP+JIHBc9RlL6UaXu6l7l8/3JD1FCL3vqY/gfYT1bxH9ibm7YP/WweF/T4S/1ih+Ynn3S9Dd/lFubzFBMEHlUJHuW5Kfx9gnM4cyYnzs3A8igfUyw2RUe0uZLpJEn5zAecPqEe0gocUZJCK++ZBeRMsU1CFjoDgtcpQ+hfcVRDa23xclfWtH6s09+OEz3nNCVZTWXe/2sG0KW7vGg1acB/nJ2c/piiIUDzAszw8FW7KQPjFgQHSCF9mvuRjCqDVfxUC4C21VjmhYWTIAYp2eSt+v85Qmt rachel@Rachels-MacBook-Pro.local
+
+runcmd:
+  - sudo su terraform
+  - cd /home/terraform
+  - sudo apt-get update
+  - sudo apt-get -y -qq install docker.io docker-compose git
+  - git clone https://github.com/tr0njavolta/multicloud-vpn
+  - cd multicloud-vpn/hashicups/docker-compose-deployment
