@@ -90,7 +90,8 @@ data "template_file" "frontend_hashicups" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "vpn-key"
-  public_key = "ssh-rsa AAAA....."
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPcwwsC6zBsFPmTLvkcRqvmnZJ+famw/GfW7ST5rVuGDJbrxEDF7Jlzi7UP+JIHBc9RlL6UaXu6l7l8/3JD1FCL3vqY/gfYT1bxH9ibm7YP/WweF/T4S/1ih+Ynn3S9Dd/lFubzFBMEHlUJHuW5Kfx9gnM4cyYnzs3A8igfUyw2RUe0uZLpJEn5zAecPqEe0gocUZJCK++ZBeRMsU1CFjoDgtcpQ+hfcVRDa23xclfWtH6s09+OEz3nNCVZTWXe/2sG0KW7vGg1acB/nJ2c/piiIUDzAszw8FW7KQPjFgQHSCF9mvuRjCqDVfxUC4C21VjmhYWTIAYp2eSt+v85Qmt rachel@Rachels-MacBook-Pro.local"
+
 }
 
 resource "aws_instance" "learn_vpn_vm" {
