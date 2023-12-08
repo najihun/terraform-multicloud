@@ -98,7 +98,7 @@ resource "aws_key_pair" "deployer" {
 
 resource "aws_instance" "learn_vpn_vm" {
 //  ami           = data.aws_ami.latest-ubuntu.id
-  ami     = ami-0bb220fc4bffd88dd
+  ami     = "ami-0bb220fc4bffd88dd"
   instance_type = "t2.micro"
   key_name = aws_key_pair.deployer.key_name
 
