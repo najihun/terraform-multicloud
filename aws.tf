@@ -69,6 +69,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
+/*
 data "aws_ami" "latest-ubuntu" {
   most_recent = true
   owners      = ["099720109477"] # Canonical
@@ -83,6 +84,7 @@ data "aws_ami" "latest-ubuntu" {
     values = ["hvm"]
   }
 }
+*/
 
 data "template_file" "frontend_hashicups" {
   template = file("./scripts/frontend_hashicups.yaml")
@@ -95,7 +97,8 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_instance" "learn_vpn_vm" {
-  ami           = data.aws_ami.latest-ubuntu.id
+//  ami           = data.aws_ami.latest-ubuntu.id
+  ami     = ami-0bb220fc4bffd88dd
   instance_type = "t2.micro"
   key_name = aws_key_pair.deployer.key_name
 
