@@ -7,7 +7,7 @@ terraform {}
 
 resource "azurerm_resource_group" "learn_vpn_rg" {
   name     = "terraform-multicloud"
-  location = "westus2"
+  location = "koreacentral"
 }
 
 ### Network
